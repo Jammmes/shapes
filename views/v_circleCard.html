@@ -1,0 +1,23 @@
+{% include 'v_header.html' %}
+
+<div class="col">
+    <div class="card mx-auto" style="width: 40rem;">
+        <div class="card-body">
+            <h5 class="card-title">Наименование фигуры: {{content_data.name}}</h5>
+            <form class="p-2" method="post" action="/shape/add/">
+                <div class="row d-flex justify-content-center text-center">
+                        <input type="number" name="center_X" value="">
+                        <input type="number" name="center_Y" value="">
+                        <input type="number" name="radius_X" value="">
+                        <input type="number" name="radius_Y" value="">
+                        <button type="submit" class="btn btn-success m-1">Добавить фигуру</button> 
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+
+{% include 'v_footer.html' %}
