@@ -3,11 +3,11 @@
 /**
  * Контроллер карточки фигуры
  */
-class ShapeController extends Controller
+class MainController extends Controller
 {
-    public $view = 'v_shape';
+    public $view = 'v_main';
 
-    public $title = 'shape card';
+    public $title = 'Add shape';
 
 
 
