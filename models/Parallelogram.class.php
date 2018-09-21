@@ -3,7 +3,7 @@
 /**
  *  Модель фигуры Прямоугольник
  */
-class Rectangle extends Shape
+class Parallelogram extends Shape
 {
  
 

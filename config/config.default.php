@@ -14,3 +14,4 @@ $config['path_controller'] = $config['path_root'] . '/../controllers';
 $config['path_libs'] = $config['path_root'] . '/../lib';
 $config['path_templates'] = $config['path_root'] . '/../views';
 $config['path_img'] = '/img/';
+$config['path_data'] = $config['path_root'] . './../data';

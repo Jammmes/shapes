@@ -25,7 +25,7 @@ class CatalogController extends Controller
      */
     public function index($var)
     {
-      //  return $this->catalog->getData();
+      return $this->catalog->getData();
     }
 
 }

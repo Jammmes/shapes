@@ -74,8 +74,9 @@ class App
                 'content_data' => $controller->$methodName($_GET),
                 'title' => $controller->title
               ];                                 
- //print_r($data['authorization']);
-   
+//print_r($data['content_data']);
+
+ 
             if (!isset($_POST['AJAX']))
             {
               $loader = new Twig_Loader_Filesystem(Config::get('path_templates'));

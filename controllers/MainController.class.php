@@ -9,19 +9,13 @@ class MainController extends Controller
 
     public $title = 'Add shape';
 
-
-
-    public function viewCard ()
-    {
-        $result = [];
-        return $result;
-    }
-    
+   
     public function add()
     {
         $result = [];
         return $result;
     }
 
+   
 
 }

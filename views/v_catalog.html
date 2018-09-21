@@ -4,7 +4,9 @@
         <div class="d-flex justify-content-around flex-wrap" id="goodsList">
             {% for good in content_data %}
             <div class="card p-1 m-1" style="width: 16rem;">
-                <img class="card-img-top text-center" src="{{good.img}}" alt="image not found">
+                <h5 class="card-title">ИД фигуры: {{good.id}}</h5>
+                <h5 class="card-title">Название фигуры: {{good.type}}</h5>
+                <h5 class="card-title">Площадь фигуры: {{good.id}}</h5>
             </div>
             {% endfor %}
         </div>
