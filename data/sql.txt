@@ -1,0 +1,32 @@
+CREATE TABLE figure(
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+type VARCHAR (50)
+);
+
+
+CREATE TABLE params(
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+id_figure INTEGER,
+type VARCHAR (50),
+value INTEGER
+);
+
+CREATE TABLE points(
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+x INTEGER,
+y INTEGER
+);
+
+INSERT INTO figure (type) VALUES ('circle');
+INSERT INTO figure (type) VALUES ('parallelogram');
+INSERT INTO figure (type) VALUES ('trinagle');
+
+
+CREATE TABLE figurelist(
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+date varchar(50)
+);
+
+INSERT INTO points (x,y) VALUES (10,10),(5,5),(15,6),(10,5),(10,5),(5,10),(10,10);
+
+INSERT INTO PARAMS (id_figure,id_list,type,value) VALUES (1,1,'center',1),(1,1,'radius',5),(2,2,'point1',2),(2,2,'point2',3),(2,2,'point3',4),(3,3,'point1',5),(3,3,'point2',6),(3,3,'point3',7);

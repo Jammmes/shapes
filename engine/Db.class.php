@@ -29,26 +29,16 @@ class Db
     private function __clone(){}
 
     /**
-     * Функция для установления соединения с базой данных
-     *
-     * @param string $user - логин
-     * @param string $password - пароль
-     * @param string $dbname - имя БД
-     * @param string $host - имя сервера
-     * @param integer $port - порт
-     * @return void
+     * Установление соединения с базой данных
+     * 
+     * @param string $db_file - путь до файла с БД
      */
-    public function Connect($user, $password, $dbname, $host='127.0.0.1',$port = 3306)
+    public function Connect($db_file)
     {
-       $connectString = 'mysql:host=' . $host . ';port= ' . $port . ';dbname=' . $dbname . ';charset=UTF8;';
-       $this->Db = new PDO ($connectString, $user, $password,
-            [
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, // возвращать ассоциативные массивы
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION // возвращать Exception в случае ошибки
-                //,PDO::ATTR_EMULATE_PREPARES => false // отключить обрамление параметров в кавычки
-            ]
-        );
+      $this->Db = new PDO ("sqlite:" . $db_file);
     }
+
+    
 
     /**
      * Функция для выполнения запроса без возвращения выборки

@@ -14,7 +14,7 @@ class App
     public static function Init()
     {
 
-      // Db::getInstance()->Connect(Config::get('db_user'), Config::get('db_password'), Config::get('db_base'));
+       Db::getInstance()->Connect(Config::get('db_file').'/'.Config::get('db_base'));
 
         self::router();
     }

@@ -8,20 +8,10 @@ class Catalog extends Model
     
     public function getData()        
     {
-
-        $db = new SQLite3(Config::get('path_data').'/shapes.db');
+        $query = "SELECT * FROM params"; 
         
-        $sql="SELECT * FROM figure";  
+        $shapes = Db::getInstance()->Select($query);
         
-        $result = $db->query($sql);
-
-        while($data = $result->fetchArray(SQLITE3_ASSOC)){ 
-
-        $shapes[] = $data; 
-
-        }
-        
-   
         return $shapes;
     }
   
