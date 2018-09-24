@@ -1,10 +1,147 @@
-#goodsList {
-    margin: 0 300px; 
-}
-
-#mainHeader {
-
-    height:90px;
-}
-
-
+    .mainContainer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-top: 35px;
+    }
+    
+    .selectBox {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 50px;
+    }
+    
+    .selectBox__form {
+        margin: 20px;
+    }
+    
+    .figureForm {
+        border: 3px solid dimgray;
+        border-radius: 10px;
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+        min-width: 200px;
+        min-height: 100px;
+    }
+    
+    .headerForm {
+        margin: 10px 0 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .headerForm__picture {
+        width: 80px;
+        height: 80px;
+        margin: 0 20px;
+    }
+    
+    fieldset {
+        border: 1px solid dimgray;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 5px;
+    }
+    
+    legend {
+        display: inline;
+        padding: 0 5px;
+        font-size: 1rem;
+        margin: 0;
+        width: inherit;
+    }
+    
+    label {
+        padding: 0 10px;
+        font-weight: 700;
+    }
+    
+    input {
+        padding-left: 10px;
+    }
+    
+    .figureForm__content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .circle,
+    .parallelogram,
+    .trinagle {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        box-sizing: border-box;
+    }
+    
+    .circle {
+        animation: circle 0.5s 1 ease-in-out;
+        animation-fill-mode: forwards;
+    }
+    
+    .parallelogram {
+        animation: parallelogram 0.5s 1 ease-in-out;
+        animation-fill-mode: forwards;
+    }
+    
+    .trinagle {
+        animation: trinagle 0.5s 1 ease-in-out;
+        animation-fill-mode: forwards;
+    }
+    
+    @keyframes circle {
+        0% {
+            transform: scale(0.1);
+        }
+        50% {
+            border-radius: 50%;
+        }
+        100% {
+            border-radius: 50%;
+            background: red;
+        }
+    }
+    
+    @keyframes trinagle {
+        0% {
+            transform: scale(0.1);
+        }
+        50% {
+            border-style: solid;
+            border-radius: 0%;
+            border-width: 0 50px 80px 50px;
+        }
+        100% {
+            border-radius: 0%;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 50px 80px 50px;
+            border-color: transparent transparent navy transparent;
+        }
+    }
+    
+    @keyframes parallelogram {
+        0% {
+            transform: scale(0.1);
+        }
+        50% {
+            border-radius: 0%;
+        }
+        100% {
+            border-radius: 0%;
+            transform: skew(-10deg);
+            background: green;
+        }
+    }

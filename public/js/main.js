@@ -1,216 +1,154 @@
 $(function() {
 
-    // ТОВАРЫ
+    var $circle = $('#circle');
+    var $trinagle = $('#trinagle');
+    var $parallelogram = $('#parallelogram');
 
-    $('#goodsList').each(function()
-    {
-        // Привяжем контекст к форме
-        var $form = $(this);
-        // Установим свой обработчик на нажатие кнопки
-        $form.on('submit', '.addToCart', function(event)
-        {
-            event.preventDefault();
-            // Получим значение ИД товара
-            var $inputId = $(event.target).find('input[name = "id"]');
-            var id = $inputId.val();
-
-            $.ajax(
-                {
-                  'url': '/Cart/add/',
-                  'method': 'post',
-                  'data':
-                  {
-                    id: id,
-                    AJAX: 'AJAX'
-                  },
-                success: function(data)
-                {
-                    //console.log(data);
-                    var newData = JSON.parse(data);
-                    // console.log(newData.summary);
-                    //Обновляем корзину
-                    var newContent = newData.summary.totalQ + '/' + newData.summary.totalS;
-                    $('#cartCount').html(newContent);
-                },
-                error: function()
-                {
-                    console.log('Товар с ид = ', id, ' не был добавлен в корзину.');
-                }
-            });
-        })
-    });
-
-    // ЗАКАЗЫ
-
-    $('#ordersList').each(function()
-    {
-        var $orderForm = $(this);
-        // Обработка проведения заказа
-        $orderForm.on('submit', '.formConfirmOrder', function(event)
-        {
-            event.preventDefault();
-            // Получим ИД заказа
-            var $inputId = $(event.target).find('input[name = "id"]');
-            var id = $inputId.val();
-            // Получим DOM элемент отображения статуса
-            var $divStatus = $(event.target).parents().siblings('.status');
-            var $status = $divStatus.children('span');
-
-            // Получим DOM элемент обеих кнопок
-            var $buttonConfirm = $(event.target).find('button:submit');
-            var $divCancel = $(event.target).parents().siblings('.cancel');
-            var $formCancel = $divCancel.find('.formCancelOrder');
-            var $buttonCancel = $formCancel.find('button:submit');
-
-            $.ajax(
-            {
-               'url': '/admin/confirm/',
-               'method': 'post',
-               'data':
-               {
-                  id: id,
-                  AJAX: 'AJAX'
-               },
-                success: function(data)
-                {
-                   //Получаем новый статус заказа                    
-                  var newStatus = (JSON.parse(data))[0].title;
-
-                  if (newStatus == 'Оплачен')
-                  {
-                    $status.html(newStatus);
-                    $status.attr('class','badge badge-success');  
-                    $buttonCancel.prop('disabled',true);
-                    $buttonConfirm.prop('disabled',true);                  
-                  }
-                },
-                error: function()
-                {
-                  console.log('Заказ не был обработан');
-                }
-            });
-        })
-        // Обработка отмены заказа
-        $orderForm.on('submit', '.formCancelOrder', function(event)
-        {
-            event.preventDefault();
-            // Получим ИД заказа
-            var $inputId = $(event.target).find('input[name = "id"]');
-            var id = $inputId.val();
-            // Получим DOM элемент отображения статуса
-            var $divStatus = $(event.target).parents().siblings('.status');
-            var $status = $divStatus.children('span');
-
-            // Получим DOM элемент обеих кнопок
-            var $buttonCancel = $(event.target).find('button:submit');
-            var $divConfirm = $(event.target).parents().siblings('.confirm');
-            var $formConfirm = $divConfirm.find('.formConfirmOrder');
-            var $buttonConfirm = $formConfirm.find('button:submit');
-
-            $.ajax(
-            {
-               'url': '/admin/cancel/',
-               'method': 'post',
-               'data':
-               {
-                  id: id,
-                  AJAX: 'AJAX'
-               },
-                success: function(data)
-                {
-                   //Получаем новый статус заказа                    
-                  var newStatus = (JSON.parse(data))[0].title;
-
-                  if (newStatus == 'Отменен')
-                  {
-                    $status.html(newStatus);
-                    $status.attr('class','badge badge-danger');  
-                    $buttonCancel.prop('disabled',true);
-                    $buttonConfirm.prop('disabled',false);                  
-                  }
-                },
-                error: function()
-                {
-                  console.log('Заказ не был обработан');
-                }
-            });
-        })      
+    $circle.on("click", function() {
+        renderForm('circle');
     })
-    
-    // РЕГИСТРАЦИЯ
- 
-    $('#regButt').click(function(event)
-    {
 
-        event.preventDefault();
+    $trinagle.on("click", function() {
+        renderForm('trinagle');
+    })
 
-        // Получим реквизиты формы
-        var $form = $('#regForm');
-        var $mainCont = $('#regContainer');
-        var $title = $('#regTitle');
-        var $name = $form.find('input[name = "name"]');
-        var $login = $form.find('input[name = "login"]');
-        var $password = $form.find('input[name = "password"]');
-        var $address = $form.find('input[name = "address"]');
-        var $email = $form.find('input[name = "email"]');
-        var $phone = $form.find('input[name = "phone"]');
-        var name = $name.val();
-        var login = $login.val();
-        var password = $password.val();
-        var address = $address.val();
-        var email = $email.val();
-        var phone = $phone.val();
+    $parallelogram.on("click", function() {
+        renderForm('parallelogram');
+    })
 
-        $.ajax(
-        {
-            'url': '/Registration/add/',
-            'method': 'post',
-            'data':
-            {
-              name: name,
-              login: login,
-              password: password,
-              address: address,
-              email: email,
-              phone: phone,
-              AJAX: 'AJAX'
-            },
-            success: function(data)
-            {
-                var newData = JSON.parse(data);
+    function renderForm(figureName) {
+        var $form = $('#figureForm');
+        $form.html("");
+        // Заголовок
+        var $header = $('<div/>', { class: 'headerForm' });
+        var $picture = $('<div/>', { class: 'headerForm__picture' });
+        var $figure = $('<span/>', { class: figureName });
+        var $title = $('<h5/>', { text: figureName, class: 'headerForm__title ' });
 
-                if(newData['success']== 1)
-                {
-                  $mainCont.html('');
-                  $title.html("Новый пользователь успешно зарегистрирован!"); 
-                  $title.append($('<div/>',{text:'Вы можете зайти в магазин под созданным пользователем или'}));
-                  $title.append($('<div/>',{text:'зарегистрировать нового пользователя.'}));
-                }else
-                {
-                    $title.html("При регистрации возникли ошибки:");
-                    // Соберем все ошибки:
-                    var $errList = $('<ul/>',{class:'list-group'});
+        $picture.append($figure);
+        $header.append($picture);
+        $header.append($title);
+        $form.append($header);
+        // Содержимое
+        var $content = $('<div/>', { class: 'figureForm__content' });
+        var $submit = $('<button/>', { class: 'btn btn-primary', type: 'submit', text: 'Create figure' });
+        var $figureType = $('<input/>', { type: "hidden", name: "type", value: figureName });
+        $content.append($figureType);
+        
+        if (figureName === 'circle') {
+            var $fieldset1 = $('<fieldset/>', { class: 'form-inline' });
+            var $fieldset2 = $('<fieldset/>', { class: 'form-inline' });
+            var $legend1 = $('<legend/>', { text: 'Center coordinates' });
+            var $legend2 = $('<legend/>', { text: 'Radius coordinates' });
+            var $input1x = $('<input/>', {
+                class: 'form-control m-2',
+                type: "number",
+                placeholder: "Input X",
+                name: "centerX",
+                required: "true"
+            });
+            var $input2x = $('<input/>', {
+                class: 'form-control m-2',
+                type: "number",
+                placeholder: "Input X",
+                name: "radiusX",
+                required: "true"
+            });
+            var $input1y = $('<input/>', {
+                class: 'form-control m-2',
+                type: "number",
+                placeholder: "Input Y",
+                name: "centerY",
+                required: "true"
+            });
+            var $input2y = $('<input/>', {
+                class: 'form-control m-2',
+                type: "number",
+                placeholder: "Input Y",
+                name: "radiusY",
+                required: "true"
+            });
 
-                    for (key in newData[0])
-                    { 
+            $fieldset1.append($legend1);
+            $fieldset1.append($input1x);
+            $fieldset1.append($input1y);
 
-                       for(err in newData[0][key])
-                       {
-                            var errText = newData[0][key][err];
-                            var $h5 = $('<h5/>',{class:'p-0 m-0'});
-                            var $li = $('<li/>',{text:errText,
-                                class:'list-group-item list-group-item-danger'});
-                            $h5.append($li);
-                            $errList.append($h5);
-                       } 
-                    }
-                    $title.append($errList);
-                }            
-            },
-            error: function()
-            {
-                $title.html("При передаче данных на сервер возникли ошибки.");
-            }
-        });     
-    })      
+            $fieldset2.append($legend2);
+            $fieldset2.append($input2x);
+            $fieldset2.append($input2y);
+
+            $content.append($fieldset1);
+            $content.append($fieldset2);
+        } else {
+            var $fieldset1 = $('<fieldset/>', { class: 'form-inline' });
+            var $fieldset2 = $('<fieldset/>', { class: 'form-inline' });
+            var $fieldset3 = $('<fieldset/>', { class: 'form-inline' });
+            var $legend1 = $('<legend/>', { text: 'Point #1 coordinates' });
+            var $legend2 = $('<legend/>', { text: 'Point #2 coordinates' });
+            var $legend3 = $('<legend/>', { text: 'Point #3 coordinates' });
+            var $input1x = $('<input/>', {
+                class: 'form-control m-2',
+                type: "number",
+                placeholder: "Input X",
+                name: "point1X",
+                required: "true"
+            });
+            var $input2x = $('<input/>', {
+                class: 'form-control m-2',
+                type: "number",
+                placeholder: "Input X",
+                name: "point2X",
+                required: "true"
+            });
+            var $input3x = $('<input/>', {
+                class: 'form-control m-2',
+                type: "number",
+                placeholder: "Input X",
+                name: "point3X",
+                required: "true"
+            });
+            var $input1y = $('<input/>', {
+                class: 'form-control m-2',
+                type: "number",
+                placeholder: "Input Y",
+                name: "point1Y",
+                required: "true"
+            });
+            var $input2y = $('<input/>', {
+                class: 'form-control m-2',
+                type: "number",
+                placeholder: "Input Y",
+                name: "point2Y",
+                required: "true"
+            });
+            var $input3y = $('<input/>', {
+                class: 'form-control m-2',
+                type: "number",
+                placeholder: "Input Y",
+                name: "point3Y",
+                required: "true"
+            });
+
+            $fieldset1.append($legend1);
+            $fieldset1.append($input1x);
+            $fieldset1.append($input1y);
+
+            $fieldset2.append($legend2);
+            $fieldset2.append($input2x);
+            $fieldset2.append($input2y);
+
+            $fieldset3.append($legend3);
+            $fieldset3.append($input3x);
+            $fieldset3.append($input3y);
+
+            $content.append($fieldset1);
+            $content.append($fieldset2);
+            $content.append($fieldset3);
+        }
+        $form.append($content);
+        $form.append($submit);
+    }
+
+
 });
+
