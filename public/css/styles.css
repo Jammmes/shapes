@@ -18,7 +18,7 @@
     }
     
     .figureForm {
-        border: 3px solid dimgray;
+        border: none;
         border-radius: 10px;
         padding: 5px;
         display: flex;
@@ -45,7 +45,7 @@
     }
     
     fieldset {
-        border: 1px solid dimgray;
+        border: 1px solid rgba(100, 100, 100, 0.5);
         padding: 10px;
         margin: 10px;
         border-radius: 5px;
