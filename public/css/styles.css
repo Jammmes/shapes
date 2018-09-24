@@ -1,9 +1,8 @@
     .mainContainer {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        margin-top: 35px;
     }
     
     .selectBox {
@@ -13,9 +12,6 @@
         margin: 50px;
     }
     
-    .selectBox__form {
-        margin: 20px;
-    }
     
     .figureForm {
         border: none;
@@ -27,7 +23,7 @@
         align-items: center;
         box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
         min-width: 200px;
-        min-height: 100px;
+        min-height: 50px;
     }
     
     .headerForm {
@@ -61,7 +57,8 @@
     
     label {
         padding: 0 10px;
-        font-weight: 700;
+        font-weight: 400;
+        font-size: 35px;
     }
     
     input {

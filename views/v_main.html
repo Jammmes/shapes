@@ -1,27 +1,27 @@
 {% include 'v_header.html' %}
 <div class="mainContainer">
         <div class="selectBox">
-            <form class="selectBox__form">
-                <div class="form-check">
-                    <input type="radio" name="figure" id="circle" value="circle">
-                    <label class="form-check-label" for="circle">
+            <div class="form-check">
+                <input type="radio" name="figure" id="circle" value="circle">
+                <label class="form-check-label" for="circle">
                     Circle
                 </label>
-                </div>
-                <div class="form-check">
-                    <input type="radio" name="figure" id="triangle" value="triangle">
-                    <label class="form-check-label" for="triangle">
-                        Triangle
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input type="radio" name="figure" id="parallelogram" value="parallelogram">
-                    <label class="form-check-label" for="parallelogram">
-                        Parallelogram
-                    </label>
-                </div>
-            </form>
+            </div>
+            <div class="form-check">
+                <input type="radio" name="figure" id="triangle" value="triangle">
+                <label class="form-check-label" for="triangle">
+                    Triangle
+                </label>
+            </div>
+            <div class="form-check">
+                <input type="radio" name="figure" id="parallelogram" value="parallelogram">
+                <label class="form-check-label" for="parallelogram">
+                    Parallelogram
+                </label>
+            </div>
         </div>
-        <form class="figureForm" id="figureForm" action="/main/add/"></form>
+<form class="figureForm" id="figureForm" action="/main/add/">
+    <h2>Select figure</h2>
+</form>
 </div>
 {% include 'v_footer.html' %}
