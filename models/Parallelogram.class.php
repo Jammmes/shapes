@@ -3,8 +3,8 @@
 /**
  *  Модель фигуры Прямоугольник
  */
-class Parallelogram extends Shape
+class Parallelogram extends Figure
 {
- 
 
 }
+

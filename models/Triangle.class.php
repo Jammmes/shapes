@@ -3,8 +3,8 @@
 /**
  *  Модель фигуры Треугольник
  */
-class Triangle extends Shape
+class Triangle extends Figure
 {
- 
+
 
 }

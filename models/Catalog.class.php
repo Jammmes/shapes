@@ -10,9 +10,15 @@ class Catalog extends Model
     {
         $query = "SELECT * FROM params"; 
         
-        $shapes = Db::getInstance()->Select($query);
+        $figures = Db::getInstance()->Select($query);
         
-        return $shapes;
+        return $figures;
     }
   
+    public function addFigure ($type,$params)
+    {
+        
+    }
+    
+    
 }

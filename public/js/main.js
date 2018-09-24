@@ -1,15 +1,15 @@
 $(function() {
 
     var $circle = $('#circle');
-    var $trinagle = $('#trinagle');
+    var $triangle = $('#triangle');
     var $parallelogram = $('#parallelogram');
 
     $circle.on("click", function() {
         renderForm('circle');
     })
 
-    $trinagle.on("click", function() {
-        renderForm('trinagle');
+    $triangle.on("click", function() {
+        renderForm('triangle');
     })
 
     $parallelogram.on("click", function() {
@@ -23,15 +23,13 @@ $(function() {
         var $header = $('<div/>', { class: 'headerForm' });
         var $picture = $('<div/>', { class: 'headerForm__picture' });
         var $figure = $('<span/>', { class: figureName });
-        var $title = $('<h5/>', { text: figureName, class: 'headerForm__title ' });
 
         $picture.append($figure);
         $header.append($picture);
-        $header.append($title);
         $form.append($header);
         // Содержимое
         var $content = $('<div/>', { class: 'figureForm__content' });
-        var $submit = $('<button/>', { class: 'btn btn-primary', type: 'submit', text: 'Create figure' });
+        var $submit = $('<button/>', { class: 'btn btn-primary', type: 'submit', text: 'Create '+ figureName });
         var $figureType = $('<input/>', { type: "hidden", name: "type", value: figureName });
         $content.append($figureType);
         
@@ -45,7 +43,8 @@ $(function() {
                 type: "number",
                 placeholder: "Input X",
                 name: "centerX",
-                required: "true"
+                required: "true",
+                autofocus:"true"
             });
             var $input2x = $('<input/>', {
                 class: 'form-control m-2',
@@ -91,7 +90,8 @@ $(function() {
                 type: "number",
                 placeholder: "Input X",
                 name: "point1X",
-                required: "true"
+                required: "true",
+                autofocus:"true"
             });
             var $input2x = $('<input/>', {
                 class: 'form-control m-2',

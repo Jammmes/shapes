@@ -1,12 +1,16 @@
 {% include 'v_header.html' %}
 <div class="row">
     <div class="col-sm-12 col-xs-12 border p-3 m-0">
-        <div class="d-flex justify-content-around flex-wrap" id="goodsList">
+        <div class="d-flex justify-content-around flex-wrap" >
             {% for good in content_data %}
             <div class="card p-1 m-1" style="width: 16rem;">
-                <h5 class="card-title">ИД фигуры: {{good.id}}</h5>
-                <h5 class="card-title">Название фигуры: {{good.type}}</h5>
-                <h5 class="card-title">Площадь фигуры: {{good.id}}</h5>
+                <h5 class="card-title">ID: {{good.id}}</h5>
+                <h5 class="card-title">Type: {{good.type}}</h5>
+                <h5 class="card-title">Square: {{good.id}}</h5>
+                <div class="card-title">Created at: {{good.id}}</div>
+                <div class="card-title">Param 1: {{good.id}}</div>
+                <div class="card-title">Param 2: {{good.id}}</div>
+                <div class="card-title">Param 3: {{good.id}}</div>
             </div>
             {% endfor %}
         </div>

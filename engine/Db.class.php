@@ -36,9 +36,7 @@ class Db
     public function Connect($db_file)
     {
       $this->Db = new PDO ("sqlite:" . $db_file);
-    }
-
-    
+    }   
 
     /**
      * Функция для выполнения запроса без возвращения выборки

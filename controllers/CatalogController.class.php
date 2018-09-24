@@ -7,7 +7,7 @@ class CatalogController extends Controller
 {
     public $view = 'v_catalog';
 
-    public $title = 'Shapes';
+    public $title = 'Figures';
 
     private $catalog = null;
 

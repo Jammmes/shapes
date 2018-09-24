@@ -3,7 +3,7 @@
 /**
  *  Модель фигуры Круг
  */
-class Circle extends Shape
+class Circle extends Figure
 {
-   
+
 }

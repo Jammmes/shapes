@@ -54,7 +54,7 @@ class App
         }
         else
         {// контроллер по умолчанию
-            $_GET['page'] = 'catalog';
+            $_GET['page'] = 'main';
         }
 
         if (isset($_GET['page']))
@@ -74,7 +74,7 @@ class App
                 'content_data' => $controller->$methodName($_GET),
                 'title' => $controller->title
               ];                                 
-//print_r($data['content_data']);
+print_r($data['content_data']);
 
  
             if (!isset($_POST['AJAX']))
