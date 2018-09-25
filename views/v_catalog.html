@@ -3,11 +3,47 @@
     <div class="col-sm-12 col-xs-12 border p-3 m-0">
         <div class="d-flex justify-content-around flex-wrap" >
             {% for figure in content_data %}
-            <div class="card p-1 m-1" style="width: 16rem;">
-                <h4 class="card-title">ID: {{figure.id}}</h4>
-                <h5 class="card-title">Type: {{figure.type}}</h5>
-                <h5 class="card-title">Area: {{figure.area}}</h5>
-                <div class="card-title">Created at: {{figure.date}}</div>
+            <div class="card p-1 m-1" style="width: 18rem;">
+                <div class="row">
+                    <div class="col-sm-4 col-xs-4 m-2">
+                        {% if figure.type == 'circle' %}
+                            <div class="miniCircle"></div>
+                        {% endif %}
+                        {% if figure.type == 'triangle' %}
+                            <div class="miniTriangle"></div>
+                        {% endif %}
+                        {% if figure.type == 'parallelogram' %}
+                            <div class="miniParallelogram"></div>
+                        {% endif %} 
+                    </div>
+                    <div class="col-sm-7 col-xs-7 d-flex align-items-center">
+                        <h5 class="card-title"> {{figure.type}}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5 col-xs-5 text-muted">
+                        ID:
+                    </div>
+                    <div class="col-sm-7 col-xs-7">
+                        <h5 class="card-title"> {{figure.id}}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5 col-xs-5 text-muted">
+                        Area:
+                    </div>
+                    <div class="col-sm-7 col-xs-7">
+                        <h5 class="card-title"> {{figure.area}}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                <div class="col-sm-5 col-xs-5 text-muted">
+                        Created at:
+                    </div>
+                    <div class="col-sm-7 col-xs-7">
+                        {{figure.date}}
+                    </div>
+                </div>
             </div>
             {% endfor %}
         </div>
