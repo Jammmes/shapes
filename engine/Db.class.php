@@ -36,7 +36,7 @@ class Db
     public function Connect($db_file)
     {
       $this->Db = new PDO ("sqlite:" . $db_file);
-    }   
+    }   //new SQLite3($db_file);
 
     /**
      * Функция для выполнения запроса без возвращения выборки
@@ -50,10 +50,12 @@ class Db
     {     
         $res = $this->Db->prepare($query);
 
+//        $res->bindParam($params);
         $res->execute($params);
-
+       
         return $res;
-    }
+//return  $res->execute();
+        }
 
     /**
      * Функция для выполнения запроса и возращения выборки
@@ -65,16 +67,10 @@ class Db
      */
     public function Select($query, $params = [])
     {
-        $assoc_array = [];
         $result = $this->Query($query, $params);
+        $assoc_array = $result->fetchAll(PDO::FETCH_ASSOC);
 
-        if ($result) {
-            while($row = $result->fetch())
-            {
-                $assoc_array[] = $row;
-            }
-            return $assoc_array;
-        }
+        return $assoc_array;
     }
 
     /**

@@ -29,7 +29,7 @@ class MainController extends Controller
             
             $params = ['point1'=>$point1,'point2'=>$point2,'point3'=>$point3];
         }
-
+        header("location:/");
         return $catalog->addFigure($type, $params);
     }
 

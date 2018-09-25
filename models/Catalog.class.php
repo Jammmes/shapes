@@ -8,11 +8,25 @@ class Catalog extends Model
     
     public function getData()        
     {
-        $query = "SELECT * FROM points"; 
+        $query = "SELECT DISTINCT fl.id AS id ,fl.date AS date,f.type AS type
+        FROM figurelist fl
+        JOIN params p ON p.id_list = fl.id
+        JOIN figure f ON f.id = p.id_figure"; 
         
         $figures = Db::getInstance()->Select($query);
         
-        return $figures;
+        // теперь в цикле для каждой фигуры посчитаем площадь
+        foreach ($figures as $figure){
+            $modelFigure = ucfirst($figure['type']);
+            $area = $modelFigure::getArea($figure['id']);
+            
+            $result_array[]=['id'=>$figure['id'],
+                'date'=>$figure['date'],
+                'type'=>$figure['type'],
+                'area'=>$area];   
+        }
+        
+        return $result_array;
     }
   
     public function addFigure ($type,$params)
@@ -34,7 +48,7 @@ class Catalog extends Model
             $id_point = $this->savePoint($value); 
             $sql = "INSERT INTO params (id_list,id_figure,type,value)
             VALUES(?,?,?,?)";
-            Db::getInstance()->Query($sql,[$id_list,$id_figure,$param,$id_point]);
+            Db::getInstance()->Query($sql,[$id_list,$id_figure[0]['id'],$param,$id_point]);
         }
        
         // Завершаем транзакцию
