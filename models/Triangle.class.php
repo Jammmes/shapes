@@ -5,5 +5,5 @@
  */
 class Triangle extends Figure
 {
-   
+
 }

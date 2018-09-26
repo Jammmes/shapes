@@ -14,9 +14,9 @@ class Db
      *
      * @return Db
      */
-    public static function getInstance(){
-        if(self::$_instance == null)
-        {
+    public static function getInstance()
+    {
+        if(self::$_instance == null) {
             self::$_instance = new Db();
         }
         return self::$_instance;
@@ -36,7 +36,7 @@ class Db
     public function Connect($db_file)
     {
       $this->Db = new PDO ("sqlite:" . $db_file);
-    }   //new SQLite3($db_file);
+    }   
 
     /**
      * Функция для выполнения запроса без возвращения выборки
@@ -49,13 +49,10 @@ class Db
     public function Query($query, $params = [])
     {     
         $res = $this->Db->prepare($query);
-
-//        $res->bindParam($params);
         $res->execute($params);
        
         return $res;
-//return  $res->execute();
-        }
+    }
 
     /**
      * Функция для выполнения запроса и возращения выборки

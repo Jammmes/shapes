@@ -16,6 +16,11 @@ $(function() {
         renderForm('parallelogram');
     })
 
+    /**
+     *  Функция выполняет рендер формы для указанного типа фигуры
+     * @param string figureName
+     * @returns void
+     */
     function renderForm(figureName) {
         var $form = $('#figureForm');
         $form.html("");
@@ -148,7 +153,5 @@ $(function() {
         $form.append($content);
         $form.append($submit);
     }
-
-
 });
 

@@ -7,5 +7,5 @@ abstract class Model
 {
   public function getData(){}
   
-  public function addFigure($type,$params){}
+  public function addFigure($type, $params) {}
 }

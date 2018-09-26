@@ -4,7 +4,13 @@
  *  Абстрактный класс Фигура
  */
 abstract class Figure
-{     
+{   
+    /**
+     * Метод для получения площади фигуры
+     * Реализован расчет площади треугольника
+     * @param int $id
+     * @return float
+     */
     public static function getArea($id) {
         $fData = self::getCoords($id);
 
@@ -24,8 +30,12 @@ abstract class Figure
         return $area;
     }
     
-    
-    protected static function getCoords($id){
+    /**
+     * Метод для получения координат фигуры по ее ID
+     * @param int $id
+     * @return array
+     */
+    public static function getCoords($id){
         
         $query = "SELECT p.x ,p.y
         FROM params pr
@@ -36,7 +46,6 @@ abstract class Figure
         $result = Db::getInstance()->Select($query,[$id]);
         
         return $result;
-    }
-    
+    }  
     
 }

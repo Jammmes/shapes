@@ -6,16 +6,23 @@
 class MainController extends Controller
 {
     public $view = 'v_main';
-
     public $title = 'Add figure';
+    private $catalog = null;
 
+    public function __construct()
+    {
+        $this->catalog = new Catalog();
+    }
    
+    /**
+     * Добавление новой фигуры
+     * @return void
+     */
     public function add()
     {
         $data = isset($_GET) ? $_GET : [];
         
         $type = $data['type'];
-        $catalog = new Catalog;
         
         if ($data['type'] === 'circle'){
             $center = ['x'=>$data['centerX'],'y'=>$data['centerY']];
@@ -29,8 +36,10 @@ class MainController extends Controller
             
             $params = ['point1'=>$point1,'point2'=>$point2,'point3'=>$point3];
         }
+        
         header("location:/");
-        return $catalog->addFigure($type, $params);
+        
+        return $this->catalog->addFigure($type, $params);
     }
 
    
