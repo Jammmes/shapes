@@ -1,33 +1,20 @@
 <?php
 
 /**
- *  Модель фигуры Прямоугольник
+ *  Модель фигуры Параллелограм
  */
 class Parallelogram extends Figure
 {
     /**
-     * Определение площади
+     * Определение площади : 
+     * т.к. параллелограм, построенный по 3 точкам состоит из 2х одинаковых
+     * треугольников, то просто результат родительского метода умножим на 2
      * @param int $id
      * @return float
      */ 
     public static function getArea($id) {
-        $fData = self::getCoords($id);
-
-        $point1X = $fData['0']['x'];
-        $point1Y = $fData['0']['y'];
         
-        $point2X = $fData['1']['x'];
-        $point2Y = $fData['1']['y'];
-        
-        $point3X = $fData['2']['x'];
-        $point3Y = $fData['2']['y'];
-        
-        $left = ($point1X - $point3X) * ($point2Y-$point3Y);
-        $right = ($point2X - $point3X) * ($point1Y-$point3Y);
-        
-        $area = 1/2 * abs($left - $right);
-               
-        return $area * 2;     
+        return parent::getArea($id) * 2 ;
     }
    /**
     * Определяет - является ли параллелограм квадратом
@@ -61,13 +48,13 @@ class Parallelogram extends Figure
    } 
    
    /**
-    * Функция проверяет два вектора на совпадение длины и угла 90 градусов
+    * Функция проверяет два вектора на совпадение длины и
+    * наличие угла между ними = 90 градусов
     * @param array $vector1
     * @param array $vector2
-    * @return int 0 - false , 1- true
+    * @return boolean
     */
-   private static function compareVectorsAndAngle($vector1,$vector2){
-        $result = 0;
+   private static function compareVectorsAndAngle($vector1, $vector2) {
             
         // Найдем косинус угла между векторами
        
@@ -81,13 +68,9 @@ class Parallelogram extends Figure
         $line1 = sqrt(pow($vector1['x'],2) + pow($vector1['y'],2));
         $line2 = sqrt(pow($vector2['x'],2) + pow($vector2['y'],2));
         
-        // Если длины равны и угол = 90 градусов, то это квадрат
+        // Если длины равны и угол = 90 градусов (cos = 0), то это квадрат
         
-        if(($cos == 0) && ($line1 == $line2)){
-            $result = 1;
-        }
-        
-       return $result; 
+       return (($cos == 0) && ($line1 === $line2));
    }
    
 }

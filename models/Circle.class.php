@@ -5,6 +5,11 @@
  */
 class Circle extends Figure
 {
+    /**
+     * Переопределенный метод расчета площади для круга
+     * @param int $id
+     * @return float
+     */
     public static function getArea($id) {
         
         $fData = self::getCoords($id);
@@ -20,6 +25,4 @@ class Circle extends Figure
         
         return round($area,2);
     }
-    
-   
 }

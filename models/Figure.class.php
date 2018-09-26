@@ -6,7 +6,7 @@
 abstract class Figure
 {   
     /**
-     * Метод для получения площади фигуры
+     * Метод для получения площади фигуры.
      * Реализован расчет площади треугольника
      * @param int $id
      * @return float
@@ -46,6 +46,5 @@ abstract class Figure
         $result = Db::getInstance()->Select($query,[$id]);
         
         return $result;
-    }  
-    
+    }   
 }
